@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import Articles from './Articles';
 
 export default class App extends Component {
   render() {
+  	console.log('test');
     return (
-      <div>React simple starter</div>
+      <div>{this.props.children}</div>
     );
   }
 }
