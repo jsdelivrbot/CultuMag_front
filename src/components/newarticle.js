@@ -5,6 +5,8 @@ import {createArticle} from '../actions/index';
 import { Link } from 'react-router'
 import  {Grid ,FormGroup,ControlLabel,FormControl,Button} from 'react-bootstrap';
 
+import axios from 'axios';
+
 import Footer from './common/footer'
 
 class NewArticle extends Component {
@@ -37,6 +39,11 @@ class NewArticle extends Component {
   	obj.format = this.state.format;
   	obj.content = this.state.content;
   	this.props.createArticle(obj);
+  	 let formData = new FormData();
+  	 console.log(this.state.picture);
+     formData.append('file', this.state.picture);
+     const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+  	axios.post("http://localhost:3000/upload/photo", formData, config)
   }
   handletitleChange = (event) =>{
 	this.setState({title:event.target.value});
@@ -45,7 +52,8 @@ class NewArticle extends Component {
 	this.setState({category:event.target.value});
   }
   handlepictureChange = (event) =>{
-	this.setState({picture:event.target.value});
+  	console.log(event.target.files)
+	this.setState({picture:event.target.files[0]});
   }
   handleformatChange = (event) =>{
 	this.setState({format:event.target.value});
@@ -72,8 +80,8 @@ class NewArticle extends Component {
   				</FormGroup>
   				<FormGroup>
   					<ControlLabel>Picture</ControlLabel>
-  					<FormControl type="file"
-  						value={this.state.picture}
+  					<input type="file"
+  					//	value={this.state.picture}
   						onChange={this.handlepictureChange}/>
   				</FormGroup>
   				<FormGroup>
