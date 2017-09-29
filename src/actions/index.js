@@ -22,7 +22,7 @@ export function fetchArticles(){
 }
 
 export function deleteArticles(){
-	const request = axios.delete(ROOT_URL+'/article');
+	const request = axios.delete(ROOT_URL+'article');
 	return {
 		type:DELETE_ARTICLES,
 		payload: request
@@ -30,7 +30,8 @@ export function deleteArticles(){
 }
 
 export function createArticle(data){
-	const request = axios.post(ROOT_URL+'/article',data);
+	console.log(data);
+	const request = axios.post(ROOT_URL+'article',data);
 	return {
 		type:CREATE_ARTICLE,
 		payload: request
@@ -38,7 +39,7 @@ export function createArticle(data){
 }
 
 export function fetchArticle(data){
-	const request = axios.get(ROOT_URL+'/article/'+data);
+	const request = axios.get(ROOT_URL+'article/'+data);
 	return {
 		type:FETCH_ARTICLE,
 		payload: request
@@ -46,7 +47,7 @@ export function fetchArticle(data){
 }
 
 export function updateArticle(data){
-	const request = axios.put(ROOT_URL+'/article/'+data.id,data);
+	const request = axios.put(ROOT_URL+'article/'+data.id,data);
 	return {
 		type:UPDATE_ARTICLE,
 		payload: request
@@ -54,7 +55,7 @@ export function updateArticle(data){
 }
 
 export function deleteArticle(data){
-	const request = axios.delete(ROOT_URL+'/article/'+data);
+	const request = axios.delete(ROOT_URL+'article/'+data);
 	return {
 		type:DELETE_ARTICLE,
 		payload: request

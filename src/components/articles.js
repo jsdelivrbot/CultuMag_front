@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {fetchArticles,fetchArticle} from '../actions/index';
 import { Link } from 'react-router'
 
+import  {Grid } from 'react-bootstrap';
+
 class Articles extends Component {
   
   constructor(props) {
@@ -20,6 +22,10 @@ class Articles extends Component {
 
   componentWillMount(){
     this.props.fetchArticles();
+  }
+
+  componentDidMount(){
+    document.title = "CultuMag ";
   }
 
   viewArticle = (event,data) =>{
@@ -55,9 +61,9 @@ class Articles extends Component {
 
 	render() {
     return (
-      <div className="container">
+      <Grid fluid>
       <div className="pull-right control-group">
-      <Link to="create_article" >
+      <Link to="NewArticle" >
        <button type="button" 
                   className="btn btn-primary " 
                   /*onClick={(e) => {this.props.logout}}*/
@@ -69,7 +75,7 @@ class Articles extends Component {
         <ul className="list-group">
           {this.renderArticles()}
         </ul>
-      </div>
+      </Grid>
     );
   }
 }
