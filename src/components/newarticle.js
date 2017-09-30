@@ -52,7 +52,15 @@ class NewArticle extends Component {
 	this.setState({category:event.target.value});
   }
   handlepictureChange = (event) =>{
-  	console.log(event.target.files)
+  let img = event.target.files[0];
+  let type = img.name.substr(img.name.lastIndexOf("."),img.name.length);
+  Object.defineProperties(img,{
+    name:{
+      writable:true
+    }
+  })
+  img.name = this.state.title + type;
+  console.log(img);
 	this.setState({picture:event.target.files[0]});
   }
   handleformatChange = (event) =>{
