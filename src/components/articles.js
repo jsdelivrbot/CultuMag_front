@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {fetchArticles,fetchArticle} from '../actions/index';
 import { Link } from 'react-router'
 
-import  {Grid } from 'react-bootstrap';
+import  {Grid,Col,Row } from 'react-bootstrap';
 
 class Articles extends Component {
   
@@ -42,9 +42,9 @@ class Articles extends Component {
     }
     else{
       return this.props.articleData.map((article)=>{
-        return(<li className="list-group-item" key={article._id}>
+        return(<Col md={4} key={article._id}>
           <p> <strong>{article.Title}</strong><span className="pull-xs-right">{article.category}</span></p>
-          <img src={article.Picture}></img>
+          <img src={article.Picture} style={{height:'100px'}}></img>
           <p>{article.Date}</p>
           <p>{article.Content}</p>
           <button type="button" 
@@ -54,15 +54,15 @@ class Articles extends Component {
           >
           View Article
           </button>
-        </li>)
+        </Col>)
       })
     }
   }
 
 	render() {
     return (
-      <Grid fluid>
-      <div className="pull-right control-group">
+      <Grid fluid style={{marginBottom:'50px'}}>
+      <div className=" control-group" >
       <Link to="NewArticle" >
        <button type="button" 
                   className="btn btn-primary " 
@@ -72,9 +72,9 @@ class Articles extends Component {
           </button>
         </Link>
         </div>
-        <ul className="list-group">
+        <Row >
           {this.renderArticles()}
-        </ul>
+        </Row>
       </Grid>
     );
   }

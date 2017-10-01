@@ -8,13 +8,15 @@ import  {FormGroup,ControlLabel,FormControl,Button,Grid, Row, Col, Clearfix} fro
 const footerContainer = {
 	marginTop: '80px',
 	height:'150px',
-	position:'absolute',
+	position:'relative',
 	left:0,
-	bottom:0,
+  bottom:0,
 	right:0,
+  marginRight:'-30px',
+  marginLeft:'-30px',
 	backgroundColor:'#e9e9e9',
 	paddingTop:'20px',
-	flex: 1,
+//	flex: 1,
 }
 
 class Footer extends Component {

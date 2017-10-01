@@ -7,7 +7,6 @@ import  {Grid ,FormGroup,ControlLabel,FormControl,Button} from 'react-bootstrap'
 
 import axios from 'axios';
 
-import Footer from './common/footer'
 
 class NewArticle extends Component {
   
@@ -109,7 +108,6 @@ class NewArticle extends Component {
   						Submit
   				</Button>
   			</form>
-  			<Footer/>
   		</Grid>
   	)
   }
