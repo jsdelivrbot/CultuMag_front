@@ -18,6 +18,8 @@ class NewArticle extends Component {
          title:'',
          category:'',
          picture:'',
+         pictureurl:'',
+         pictureName:'',
          format:'',
          content:''
       }
@@ -38,11 +40,12 @@ class NewArticle extends Component {
   	obj.picture = this.state.picture;
   	obj.format = this.state.format;
   	obj.content = this.state.content;
+    obj.pictureformat = this.state.pictureurl;
+    obj.pictureName = this.state.pictureName;
   	this.props.createArticle(obj);
-  	 let formData = new FormData();
-  	 console.log(this.state.picture);
-     formData.append('file', this.state.picture);
-     const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+  	let formData = new FormData();
+    formData.append('file', this.state.picture);
+    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
   	axios.post("http://localhost:3000/upload/photo", formData, config)
   }
   handletitleChange = (event) =>{
@@ -53,15 +56,10 @@ class NewArticle extends Component {
   }
   handlepictureChange = (event) =>{
   let img = event.target.files[0];
-  let type = img.name.substr(img.name.lastIndexOf("."),img.name.length);
-  Object.defineProperties(img,{
-    name:{
-      writable:true
-    }
-  })
-  img.name = this.state.title + type;
-  console.log(img);
-	this.setState({picture:event.target.files[0]});
+	let type = img.name.substr(img.name.lastIndexOf("."),img.name.length);
+  this.setState({picture:img});
+  this.setState({pictureurl:type});
+  this.setState({pictureName:img.name});
   }
   handleformatChange = (event) =>{
 	this.setState({format:event.target.value});
@@ -89,7 +87,6 @@ class NewArticle extends Component {
   				<FormGroup>
   					<ControlLabel>Picture</ControlLabel>
   					<input type="file"
-  					//	value={this.state.picture}
   						onChange={this.handlepictureChange}/>
   				</FormGroup>
   				<FormGroup>
